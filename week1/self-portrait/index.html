@@ -17,18 +17,34 @@
             font-family: sans-serif;
         }
         body {
-            background-image: url(/creative-coding/week1/self-portrait/SelfPortraitBG.png);
+            background-image: url(/creative-coding/week1/self-portrait/SelfPortraitBG.png/);
         }
 
-        .align-left {
+        #column1 {
             text-align: left;
             margin=20px
+            display: inline-block;
+        }
+
+        #column2 {
+            display: inline-block;
+            margin-left: 50px;
+            margin-top: 40px;
+        }
+
+        #wrapper {
+            display: flex;
+            flex-direction: row;
         }
 
         .about-me {
             border: 5px solid darkgray;
             margin-right: auto;
-            width: 18%;
+            width: 100%;
+        }
+
+        .underline {
+            text-decoration: underline;
         }
 
 
@@ -37,21 +53,27 @@
 
 </head>
 <body>
-<div class='align-left'>
+<div id='wrapper'>
+  <div id='column1'>
     <h2>Hello There!</h2>
-    <img src="/creative-coding/week1/self-portrait/PlaceholderPfp.png" alt="imgalt picture of me"/>
-    <h4>ABOUT ME:</h4>
+    <img src="/creative-coding/week1/self-portrait/PlaceholderPfp.png/" alt="imgalt picture of me"/>
+    <h4 class='underline'>ABOUT ME:</h4>
     <p class='about-me'>Hi there, I'm Snekky!<br>I make stuff on the internet, including<br>art, webcomics, and fanfiction.<br>I'm a minor, and do not wish to<br>disclose my age.<br>My current obsession is FNaF.<br>Offline, I like to design and make<br>cosplays and halloween costumes,<br>and currently have made cosplays of the<br>Golden Guard (TOH), c!Ranboo, Teen<br>Michael Afton, and Evan/Chris/C.C. Afton.<br>In progress cosplays are Puppet and<br> Mangle.<br>Upcoming/potential cosplays are<br>DJ Music Man, Funtime Freddy, Funtime<br>Foxy, and maybe Scrap Baby.</p>
-    <h4>FIND ME HERE:</h4>
-    <p class='about-me' style='float: down'>You can find me at these places, <br>although my activity is varied.         <br>
+    <h4 class='underline'>FIND ME HERE:</h4>
+    <p class='about-me'>You can find me at these places, <br>although my activity is varied.         <br>
         <a href='https://www.deviantart.com/dangernoodle851' target='_blank'>DeviantArt</a><br>
         <a href='https://comicfury.com/profile.php?username=SnekkyTheGreat' target='_blank'>ComicFury</a><br>
         <a href='https://artfight.net/~SnekkyTheGreatest'>ArtFight</a><br>
         <a href='https://scratch.mit.edu/users/DangerNoodle851/' target='_blank'>Scratch</a> (banned, hopefully this is <br>temporary)<br>
         <a href='https://www.youtube.com/channel/UCy9bM4FlGVrWHIf0Wk_c8ww' target='_blank'>YouTube</a><br>
         <a href='https://twitter.com/SnekkyTheGreat' target='_blank'>Twitter</a> (I don't do anything here,<br> I tried to delete the account but it <br>wouldn't let me)<br>
-    
-</div>
+    </p>
+  </div>
 
+  <div id='column2'>
+    <h3 class='underline'>Pronouns</h3>
+    <img src="/creative-coding/week1/self-portrait/ChartPlaceholder.png/" alt="imgalt pronouns chart"/>
+  </div>
+</div>
 </body>
 </html> 
