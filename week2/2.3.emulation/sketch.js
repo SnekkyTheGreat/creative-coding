@@ -15,14 +15,15 @@ for (let x = 0; x < 6; x++){
     strokeWeight(12)
     stroke(133, 141, 131)
     // Layer 1 quads
-    quad(random(35, 79), random(35, 79), 
-    random(81, 105), random(35, 79), 
-    random(81, 105), random(81, 105), 
-    random(35, 79), random(81, 105))
+    quad(random(27, 79), random(27, 79), 
+    random(81, 113), random(27, 79), 
+    random(81, 113), random(81, 113), 
+    random(27, 79), random(81, 113))
     pop();
   }
 }
-// In a different loop so that the thin ones aren't overlapped by thick ones drawn afterwards
+// In a different loop so that the thin ones aren't overlapped by thick ones if they're 
+// drawn afterwards
 for (let x = 0; x < 6; x++){
   for (let y = 0; y < 6; y++){
     push();
@@ -32,10 +33,10 @@ for (let x = 0; x < 6; x++){
     strokeWeight(4)
     stroke(0, 0, 0, 140)
     // Layer 2 quads
-    quad(random(55, 99), random(35, 79),
-    random(101, 125), random(35, 79), 
-    random(101, 125), random(81, 105),
-    random(55, 99), random(81, 105))
+    quad(random(47, 99), random(27, 79),
+    random(101, 133), random(27, 79), 
+    random(101, 133), random(81, 113),
+    random(47, 99), random(81, 113))
     pop();
   }
 }
