@@ -13,7 +13,7 @@ for (let x = 0; x < 18; x++){
   for (let y = 0; y < 19; y++){
     push();
     // honestly not sure what I did here
-    translate(x * 20, y * 20);
+    translate(x * 50, y * 50);
     // self explanatory
     strokeWeight(5)
     // the modulo thingy making it checkerboardy
