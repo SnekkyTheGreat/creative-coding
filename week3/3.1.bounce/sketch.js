@@ -34,7 +34,7 @@ function draw() {
   textSize(20);
   text("Corner Hits: " + cornerhits, -70, 0)
 
-  // Our bouncy ball 
+  // Our bouncy ball
   ellipse(x, y, 50);
 
   // The looper. I thought it would stop after all the color combos in the list had been
