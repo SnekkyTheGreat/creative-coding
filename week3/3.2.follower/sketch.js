@@ -6,15 +6,23 @@ let xspeed = speedfactor;
 let yspeed = speedfactor;
 let cassx = 400;
 let cassy = 500;
-let debug = false;
 let health = 400;
-let d = sqrt((cassx - mouseX)**2 + (cassy - mouseY)**2);
+let cutscene = 1;
+let purpleX;
+let purpleY;
+let dead = false;
+let stop = false;
+let debug = false;
 
 function preload() {
   bdimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/BackdropSprite2.png');
+  sbimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/SpringBonnie.png')
   chimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/Child2.gif');
   pgimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/PurpleGuy2.gif');
-  goimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/GameOver.png')
+  goimg = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/GameOver.png');
+  cutimg1 = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/Cutscene1.png')
+  cutimg2 = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/Cutscene.png')
+  cutimg3 = loadImage('https://snekkythegreat.github.io/creative-coding/week3/3.2.follower/Cutscene3.png')
 }
 
 function setup() {
@@ -24,8 +32,22 @@ function setup() {
 function draw() {
   background(0);
 
+  // collision
+  if (mouseX > 120 & mouseX < 680){
+    purpleX = mouseX
+  }
+  if (mouseY > 102 & mouseY < 428){
+    purpleY = mouseY
+  }
+
+  // distance
+  let d = sqrt((cassx - purpleX)**2 + (cassy - purpleY)**2);
+
   // backdrop
   image(bdimg, 0, 0);
+
+  // spring bonnie suit
+  image(sbimg, 589, 243, 117, 118);
 
   // health text
   fill(255)
@@ -49,17 +71,43 @@ function draw() {
   image(chimg, cassx, cassy, 54, 70);
 
   // this will be directly on the mouse
-  image(pgimg, mouseX - 85, mouseY - 60,);
+  image(pgimg, purpleX - 85, purpleY - 60,);
+  // this happens if you die specially
+  if (dead == true & stop == false){
+    image(cutimg1, 0, 0);
+    setTimeout(() => {
+      cutscene = 2;
+    }, 2000)
+  }
 
-  
+  // detects if dead normally
+  if (cutscene == 2){
+    image(cutimg2, 0, 0);
+    setTimeout(() => {
+      cutscene = 3
+    }, 2000)
+  }
+
+  if (cutscene == 3){
+    image(cutimg3, 0, 0);
+    setTimeout(() => {
+      health = 0;
+    }, 2000)
+  }
+
+  if (health == 0){
+    image(goimg, 0, 0);
+    stop = true;
+  }
+
   // motion
-  if (mouseX > cassx){
+  if (purpleX > cassx){
    xspeed = speedfactor;
  }else{
    xspeed = -speedfactor;
  }
 
- if (mouseY > cassy){
+ if (purpleY > cassy){
    yspeed = speedfactor;
  }else{
    yspeed = -speedfactor;
@@ -68,16 +116,22 @@ function draw() {
   cassx += xspeed;
   cassy += yspeed;
 
-  // damage
-  if (d > 80){
-    health -= 50;
+  // main damage
+  if (d < 80 & health > 0){
+    health -= 1;
   }
+
+  // special damage
+  if (purpleX > 595 & purpleX < 705 & purpleY > 240 & purpleY < 360){
+      dead = true;
+    }
 
   if (debug){
     noStroke();
     fill(255)
-    text("x " + mouseX, 400, 300);
-    text("y " + mouseY, 400, 330);
+    text("x " + purpleX, 400, 300);
+    text("y " + purpleY, 400, 330);
     text("d " + d, 400, 360);
+    text("health " + health, 400, 390)
   }
 }
