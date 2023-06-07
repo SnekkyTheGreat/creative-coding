@@ -1,6 +1,7 @@
 let bdimg;
 let pgimg;
 let chimg;
+let millis = 0;
 let speedfactor = 3;
 let xspeed = speedfactor;
 let yspeed = speedfactor;
@@ -12,6 +13,7 @@ let purpleX;
 let purpleY;
 let dead = false;
 let stop = false;
+let timerstop = false;
 let debug = false;
 
 function preload() {
@@ -55,6 +57,9 @@ function draw() {
   textSize(20);
   text("Health", 15, 20,);
 
+  // Timer
+  text("Time survived: " + Math.floor(millis) + " seconds", 530, 20)
+
   // under health bar
   fill(0);
   strokeWeight(3);
@@ -75,6 +80,7 @@ function draw() {
   // this happens if you die specially
   if (dead == true & stop == false){
     image(cutimg1, 0, 0);
+    timerstop = true
     setTimeout(() => {
       cutscene = 2;
     }, 2000)
@@ -98,6 +104,10 @@ function draw() {
   if (health == 0){
     image(goimg, 0, 0);
     stop = true;
+    timerstop = true;
+    fill(255);
+    noStroke();
+    text("You survived for " + Math.floor(millis) + " seconds", 250, 420)
   }
 
   // motion
@@ -112,7 +122,7 @@ function draw() {
  }else{
    yspeed = -speedfactor;
  }
-
+  // Actual motion
   cassx += xspeed;
   cassy += yspeed;
 
@@ -125,6 +135,11 @@ function draw() {
   if (purpleX > 595 & purpleX < 705 & purpleY > 240 & purpleY < 360){
       dead = true;
     }
+
+  // timer thingy
+  if (timerstop == false){
+    millis += (1 / 60);
+  }
 
   if (debug){
     noStroke();
